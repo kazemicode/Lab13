@@ -60,8 +60,23 @@
 #
 
 import re
+# from tkinter import *
 import tkinter as tk
-from tkinter import messagebox, simpledialog
+from tkinter import messagebox, simpledialog, ttk
+# import threading
+
+root = tk.Tk()
+window = tk.Canvas(root, width=100, height=100)
+def game_init():
+
+    button = tk.Button(window, text="Start Adventure", command=go)
+    button2 = tk.Button(window, text="Quit", command=quit)
+    window.pack()
+    button.pack()
+    button2.pack()
+    window.mainloop()
+
+
 
 
 # The location class initializes all rooms in the game world.
@@ -363,12 +378,12 @@ You look around and discover you are in the ... ")
 
 # Prints welcome message on game start.
 def prompt_to_play():
-    prompt = messagebox.askyesno("Welcome to Stargate: SCSI:1",\
-                                    "Start a new game?")
+    prompt = messagebox.askyesno("Welcome to Stargate: SCSI:1", "Start a new game?", parent=window)
     return prompt
 
 # Print game directions initially after game start, and displays help menu during any time of the game.
 def print_directions():
+
     messagebox.showinfo("Navigation", """To navigate the game world, type the following commands:\n\n\
     MOVEMENT\n\
     Move north: n/north\n\
@@ -381,22 +396,25 @@ def print_directions():
     Look around: look/scan\n\
     Examine object: examine [object]\n\
     Exit game: quit/exit\n\n\
-To access this help menu at any time, type \"help\".\n""")
+To access this help menu at any time, type \"help\".\n""", parent=window)
+
    
 def user_name():
-    application_window = tk.Tk()
-
     name = simpledialog.askstring("NAME", "Greetings, adventurer. What is your name?",
-                                    parent=application_window)
+                                    parent=window)
+
     return name
+
 def game_exit():
     print("\nGame over. Thanks for playing!")
     raise SystemExit
 
 # Drives the whole game.
-def main():
-    if prompt_to_play():
-        print_directions()
+
+
+
+def go():
+    print_directions()
     name = None
     while(name is None):
         name = user_name()
@@ -405,11 +423,14 @@ def main():
     Location.print_description(main_room)
     #Run until exit or player dies
     while True:
-      #Prompt user for movement
-     user_input(input(">>>", ))
-      # Go to room and allow commands
+        #Prompt user for movement
+        user_input(input(">>>", ))
+        # Go to room and allow commands
+
+
 p = Player()
-main()
+game_init()
+
 
 
 
