@@ -370,11 +370,13 @@ def the_chair():
         find that the chair is in fact only a chair.\n")
 
 # Prints introduction text once at start of game.
-def print_intro():
+def print_intro(name):
+    print("A w a k e n . . . " + name)
     print("Your body aches. There is flowing water, somewhere, but you cannot tell where.\n\
 Rolling over, blades of grass tickle your skin and the smell of ash brings\n\
 burning tears. As you wipe your eyes, the surrounding structure comes into focus.\n\
 You look around and discover you are in the ... ")
+    Location.print_description(main_room)
 
 # Prints welcome message on game start.
 def prompt_to_play():
@@ -398,34 +400,35 @@ def print_directions():
     Exit game: quit/exit\n\n\
 To access this help menu at any time, type \"help\".\n""", parent=window)
 
-   
 def user_name():
     name = simpledialog.askstring("NAME", "Greetings, adventurer. What is your name?",
                                     parent=window)
 
     return name
 
+def get_user_name():
+    name = None
+    while (name is None):
+        name = user_name()
+    return name
+
+def run_game():
+    while True:
+        #Prompt user for movement
+        user_input(input(">>>", ))
+        # Go to room and allow commands
+
 def game_exit():
     print("\nGame over. Thanks for playing!")
     raise SystemExit
 
 # Drives the whole game.
-
-
-
 def go():
     print_directions()
-    name = None
-    while(name is None):
-        name = user_name()
-    print("A w a k e n . . . " + name)
-    print_intro()
-    Location.print_description(main_room)
+    name = get_user_name()
+    print_intro(name)
     #Run until exit or player dies
-    while True:
-        #Prompt user for movement
-        user_input(input(">>>", ))
-        # Go to room and allow commands
+    run_game()
 
 
 p = Player()
