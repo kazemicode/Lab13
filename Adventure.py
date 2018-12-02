@@ -1,6 +1,6 @@
 # Team SCSI Logic
 # Sara Kazemi, Cody Young, Nathan Warren-Acord, Ryan Dorrity
-# Lab 12
+# Lab 14
 # 11/26/2018
 # ###########################################################
 
