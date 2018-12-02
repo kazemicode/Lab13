@@ -1,4 +1,4 @@
-# Lab 14
+# Lab 13
 original = open('news.txt', 'r').read()  # News story from The Onion
 # https://local.theonion.com/recruiter-saw-your-background-in-computer-science-and-t-1830772882
 words_file = open('replacement.txt', 'r').read()
